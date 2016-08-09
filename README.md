@@ -1,5 +1,5 @@
 # Screenplan hands-on workshop
-**we use java, docker, git**
+**we use java, docker, git, intellij**
 
 We don't like flaky tests, do we? Our tests work, like, all the time. We added some layers and threw some nice design patterns in there, page objects. We love them page objects, those things are awesome.
 
