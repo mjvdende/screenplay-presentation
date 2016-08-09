@@ -3,7 +3,7 @@
 
 We don't like flaky tests, do we? Our tests work, like, all the time. We added some layers and threw some nice design patterns in there, page objects. We love them page objects, those things are awesome.
 
-Now, wait a sec, some guys wrote about the journey pattern, or screenplay pattern. This is yet a new design pattern. We’d better look into that, don’t want those flaky tests to bite us in the tail.
+Now, wait a sec, some guys wrote about the journey pattern, or screenplay pattern. This is yet a new design pattern. We'd better look into that, don't want those flaky tests to bite us in the tail.
 
 Wanna come join us, figure this thing out? Bring programming skills because we are getting hands on and explore screenplay design pattern in java.
 
