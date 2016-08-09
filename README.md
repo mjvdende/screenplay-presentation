@@ -16,15 +16,6 @@ Please make sure you have following software installed on your laptop to partici
 - chrome
 - intellij
 
-# How to run this presentation
-
-```
-docker run -ti -d \
--p 8989:80 \
--v $(pwd):/usr/share/nginx/html:ro \
-nginx
-```
-
 # Section 1: setting the stage
 - Why do we need a new design pattern when desiging our test cases?
 - What are the different design patterns and introduction into screenplay
@@ -41,3 +32,12 @@ nginx
 # Section 4: all together now
 - Bringing all the pieces together
 - Hands on exercise
+
+# How to run this presentation
+
+```
+docker run -ti -d \
+-p 8989:80 \
+-v $(pwd):/usr/share/nginx/html:ro \
+nginx
+```
