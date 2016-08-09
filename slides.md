@@ -1,10 +1,11 @@
 <!-- .slide: data-background="#6B205E" -->
-<center><div style="width: 75%; height: auto;"><img src="img/xebia.svg"/></div></center>
+<center><div style="width: 65%; height: auto;"><img src="img/xebia.svg"/></div></center>
 <br />
 <center>
 <br />
 <br />
-**Screenplay pattern**
+# Workshop Webdriver Patterns
+## Page-objects to Screenplay
 
 **Maarten van den Ende** mvandenende@xebia.com
 
