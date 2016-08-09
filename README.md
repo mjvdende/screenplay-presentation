@@ -16,24 +16,24 @@ Please make sure you have following software installed on your laptop to partici
 - chrome
 - intellij
 
-# Section 1: setting the stage
+## Section 1: setting the stage
 - Why do we need a new design pattern when desiging our test cases?
 - What are the different design patterns and introduction into screenplay
 - Setup your environment: you need intellij, java, chrome, git, docker
 
-# Section 2: actors and abilities
+## Section 2: actors and abilities
 - Introduction actors and abilities
 - Hands-on exercise
 
-# Section 3: tasks and actions
+## Section 3: tasks and actions
 - Introduction tasks and actions
 - Hands-on exercise
 
-# Section 4: all together now
+## Section 4: all together now
 - Bringing all the pieces together
 - Hands-on exercise
 
-# How to run this presentation
+## How to run this presentation
 
 ```
 docker run -ti -d \
