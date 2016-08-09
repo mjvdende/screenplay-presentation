@@ -1,11 +1,11 @@
-# Screenplan hands on workshop
+# Screenplan hands-on workshop
 **we use java, docker, git**
 
 We don't like flaky tests, do we? Our tests work, like, all the time. We added some layers and threw some nice design patterns in there, page objects. We love them page objects, those things are awesome.
 
 Now, wait a sec, some guys wrote about the journey pattern, or screenplay pattern. This is yet a new design pattern. We'd better look into that, don't want those flaky tests to bite us in the tail.
 
-Wanna come join us, figure this thing out? Bring programming skills because we are getting hands on and explore screenplay design pattern in java.
+Wanna come join us, figure this thing out? Bring programming skills because we are getting hands-on and explore screenplay design pattern in java.
 
 ### Preperation
 
@@ -23,15 +23,15 @@ Please make sure you have following software installed on your laptop to partici
 
 # Section 2: actors and abilities
 - Introduction actors and abilities
-- Hands on exercise
+- Hands-on exercise
 
 # Section 3: tasks and actions
 - Introduction tasks and actions
-- Hands on exercise
+- Hands-on exercise
 
 # Section 4: all together now
 - Bringing all the pieces together
-- Hands on exercise
+- Hands-on exercise
 
 # How to run this presentation
 
