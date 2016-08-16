@@ -1,3 +1,4 @@
+
 <!-- .slide: data-background="#6B205E" -->
 <center><div style="width: 65%; height: auto;"><img src="img/xebia.svg"/></div></center>
 <br />
@@ -7,25 +8,186 @@
 # Workshop Webdriver Patterns
 ## Page-objects to Screenplay
 
-**Maarten van den Ende** mvandenende@xebia.com
-
+**Maarten van den Ende** mvandenende@xebia.com <br>
 **Jochum Börger** jborger@xebia.com
 
-<!-- !SLIDE -->
+!SLIDE
 <!-- .slide: data-background="#6B205E" -->
-<!-- # Structure
+# Structure
 
-* Introduction
-* Setup environment
-* Actor & Abilities
-* Tasks & Actions
-* Actor & Questions
-* ALl together now -->
+- Why screenplay
+- Refactoring Page-Objects
+- Page-objects are not user stories
+- Screenplay getting started
+- Setup
+- Tasks & Actions
+- Actor & Questions
+- ALl together now
 
 !SLIDE
-# Introduction
-Welcome
+<!-- .slide: data-background="#6B205E" -->
+# Why screenplay
+
+Design patterns are solutions to general problems that software developers faced during software development. <!-- .element: class="fragment" data-fragment-index="1" -->
+
+Design patterns provide a standard terminology and are specific to particular scenario. <!-- .element: class="fragment" data-fragment-index="2" -->
+
 
 !NOTE
 
-this is a presenter note
+Design patterns represent the best practices used by experienced object-oriented software developers. Design patterns are solutions to general problems that software developers faced during software development. These solutions were obtained by trial and error by numerous software developers over quite a substantial period of time.
+
+For example, a singleton design pattern signifies use of single object so all developers familiar with single design pattern will make use of single object and they can tell each other that program is following a singleton pattern.
+
+!SUB
+## Page-objects
+
+* PageObjects are the standard for automated web testing for many years.
+* Simon Stewart wrote the original Selenium PageObject wiki entry in 2009
+* Page-objects are not user stories
+* Code smell and coding principles
+* Test suites become slow, fragile and unreliable
+
+!SUB
+## Page object code smell
+
+> A code smell is a surface indication that usually corresponds to a deeper problem in the system. The term was first coined by Kent Beck while helping me with my Refactoring book.
+
+*- Martin Fowler*
+
+* Large class
+
+!SUB
+## Coding principles
+
+SOLID is an acronym coined by Michael Feathers and Bob Martin that encapsulates five good object-oriented programming principles
+
+* Single Responsibility Principle <!-- .element: class="fragment" data-fragment-index="1" -->
+* Open Closed Principle <!-- .element: class="fragment" data-fragment-index="2" -->
+* Liskov Substitution Principle <!-- .element: class="fragment" data-fragment-index="3" -->
+* Interface Segregation Principle <!-- .element: class="fragment" data-fragment-index="4" -->
+* Dependency Inversion Principle <!-- .element: class="fragment" data-fragment-index="5" -->
+
+We’ll concentrate on the two that have the most noticeable effect on refactoring of PageObjects — the Single Responsibility Principle (SRP) and the Open Closed Principle (OCP). <!-- .element: class="fragment" data-fragment-index="6" -->
+
+!SUB
+## SRP - Single Responsibility Principle
+The SRP states that a class should have only one responsibility and therefore only one reason to change. This reduces the risk of us affecting other unrelated behaviours when we make a necessary change.
+
+> If a class has more than one responsibility, then the responsibilities become coupled. Changes to one responsibility may impair or inhibit the class’ ability to meet the others. This kind of coupling leads to fragile designs that break in unexpected ways when changed.
+
+*- Robert Martin, Agile Principles, Patterns & Practices*
+
+!SUB
+## SRP: PageObjects commonly have the following responsibilities:
+
+Provide an abstraction to the location of elements on a page via a meaningful label for what those elements mean in business terms. <!-- .element: class="fragment" data-fragment-index="1" -->
+
+Describe the tasks that can be completed on a page using its elements(often, but not always, expressing navigation in the PageObject returned by a task). <!-- .element: class="fragment" data-fragment-index="2" -->
+
+!SUB
+## SRP: Simple example
+
+Create example
+
+!NOTE
+
+show structure of simple page, login or meetup page?
+* Elements: toggleAllButtons, filterTodos, newTodo
+* Tasks: addATodoItem, filterItems, ToggleAllCompleted
+
+!SUB
+## OCP - Open Closed Principle
+
+The Open Closed Principle (coined by Bertrand Meyer in Object-Oriented Software Construction) states that a class should be open for extension, but closed for modification.
+
+> Adding a new feature would involve leaving the old code in place and only deploying the new code, perhaps in a new jar or dll or gem. 
+
+*— Robert Martin, The Open Closed Principle*
+
+!SUB
+## OCP: Simple example
+
+To satisfy OCP it should be possible to simply add a new class that describes how to sort the list.
+
+Scenario: add ability to sort items on popularity
+
+!SLIDE
+<!-- .slide: data-background="#6B205E" -->
+# Refactor Page Objects
+**Pageobject** approach
+- Add method to "itemsPage" class
+
+!SUB
+## Satisfy OCP
+- Adding a new **behaviour** would involve adding a new class
+- Leaving elements and tasks in **single class**
+
+!SUB
+## Satisfying SRP
+- Create classes for locating **elements** and **tasks**
+- NOTE: this not solves OCP (each new task requires opening the tasks class)
+
+!SUB
+## Satisfy OCP and OCP
+- Combine the **Extract Class refactoring** with the **Replace Method with Method Object** refactoring
+
+!SLIDE
+<!-- .slide: data-background="#6B205E" -->
+# Page-objects are not user stories
+
+* **Behaviours** are the primary concern of our tests; the **implementation** — a secondary concern.
+
+* By starting from this point of view, this changes the way we perceive the domain and therefore how we model it. This thinking takes us **away from pages**. Instead, we find we have **actors** with the **abilities** to play a given role. Each test scenario becomes a narrative describing the tasks and how we expect a story to play out for a given goal.
+
+!SLIDE
+<!-- .slide: data-background="#6B205E" -->
+# Screenplay getting started
+
+- Start with user story
+
+```
+Should be able to add a todo item
+
+As James
+I want to capture the most important things I need to do
+So that I don't leave so many things until the last minute
+```
+
+!SUB
+## Test scenario
+```
+@Test
+public void should_be_able_to_add_the_first_todo_item() {
+  givenThat(james).wasAbleTo(Start.withAnEmptyTodoList());
+  when(james).attemptsTo(AddATodoItem.called("Buy some milk"));
+  then(james).should(seeThat(TheItems.displayed(), hasItem("Buy some milk")));
+}
+```
+
+!SUB
+## Screenplay domain
+
+* Tests describe how a user interacts to achieve a goal
+* A user interacting with the system an Actor
+* Actors are at the heart of the Screenplay pattern
+* Each actor has one or more Abilities
+* Actors can also perform Tasks
+* To achieve these tasks, they will typically need to interact with the application. We call these interactions Actions
+* Actors can also ask Questions about the state of the application
+
+!NOTE
+For this reason, tests read much better if they are presented from the point of view of the user (rather than from the point of ‘pages’).
+
+!SUB
+## Screenplay actor centric model
+
+![Screenplay](/img/screenplay.jpg)
+
+*screenplay domain modal*
+
+!SLIDE
+# Set up
+
+* git clone
+* build

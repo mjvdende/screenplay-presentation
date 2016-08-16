@@ -179,7 +179,33 @@ Other
 .reveal dt {}
 .reveal dd {}
 
-.reveal blockquote {}
+.reveal blockquote {
+  background: #f9f9f9;
+  border-left: 10px solid #ccc;
+  margin: 1.5em 10px;
+  padding: 0.5em 10px;
+  quotes: "\201C""\201D";
+}
+.reveal blockquote:before {
+  color: #ccc;
+  content: open-quote;
+  font-size: 4em;
+  line-height: 0.1em;
+  margin-right: 0.25em;
+  vertical-align: -0.4em;
+}
+.reveal blockquote:after {
+  color: #ccc;
+  content: close-quote;
+  font-size: 4em;
+  line-height: 0.1em;
+  margin-right: 0.25em;
+  vertical-align: -0.4em;
+  content: "\201D";
+}
+.reveal blockquote p {
+  display: inline;
+}
 .reveal q {}
 
 .reveal pre {
@@ -236,16 +262,16 @@ Images
 Navigation controls
 */
 .reveal .controls .navigate-left, .reveal .controls .navigate-left.enabled, .reveal .controls .navigate-left.enabled:hover {
-  border-right-color: var(--mainColor);
+  border-right-color: var(--black);
 }
 .reveal .controls .navigate-right, .reveal .controls .navigate-right.enabled, .reveal .controls .navigate-right.enabled:hover {
-  border-left-color: var(--mainColor);
+  border-left-color: var(--black);
 }
 .reveal .controls .navigate-up, .reveal .controls .navigate-up.enabled, .reveal .controls .navigate-up.enabled:hover {
-  border-bottom-color: var(--mainColor);
+  border-bottom-color: var(--black);
 }
 .reveal .controls .navigate-down, .reveal .controls .navigate-down.enabled, .reveal .controls .navigate-down.enabled:hover {
-  border-top-color: var(--mainColor);
+  border-top-color: var(--black);
 }
 
 /*
