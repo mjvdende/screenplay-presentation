@@ -21,6 +21,7 @@
 - Tasks & Actions
 - Questions
 - All together now
+- Wrap-up
 
 !SLIDE
 <!-- .slide: data-background="#6B205E" -->
