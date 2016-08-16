@@ -124,21 +124,22 @@ Scenario: add ability to sort items on popularity
 - Start with user story
 
 ```
-Should be able to add a todo item
+Should be able to login with credentials
 
-As James
-I want to capture the most important things I need to do
-So that I don't leave so many things until the last minute
+As Anna
+I want to be able to view the website as an authorized user
+So that I can see my avatar
 ```
 
 !SUB
 ## Test scenario
 ```
 @Test
-public void should_be_able_to_add_the_first_todo_item() {
-  givenThat(james).wasAbleTo(Start.withAnEmptyTodoList());
-  when(james).attemptsTo(AddATodoItem.called("Buy some milk"));
-  then(james).should(seeThat(TheItems.displayed(), hasItem("Buy some milk")));
+public void should_be_able_to_login_with_credentials() {
+  givenThat(anna).wasAbleTo(openTheMeetUpWebsite);
+  when(anna).wasAbleTo(browseToTheLoginPage);
+    and(anna).attemptsTo(LogIn.withCredentials());
+  then(anna).should(eventually(seeThat(theUserAvatarIsVisible)));
 }
 ```
 
