@@ -16,10 +16,8 @@
 # Structure
 
 - Why screenplay
-- Refactoring Page-Objects
-- Page-objects are not user stories
 - Screenplay getting started
-- Setup
+- Actors and Abilities
 - Tasks & Actions
 - Actor & Questions
 - ALl together now
@@ -47,6 +45,13 @@ For example, a singleton design pattern signifies use of single object so all de
 * Page-objects are not user stories
 * Code smell and coding principles
 * Test suites become slow, fragile and unreliable
+
+!SUB
+# Page-objects are not user stories
+
+* **Behaviours** are the primary concern of our tests; the **implementation** — a secondary concern.
+
+* By starting from this point of view, this changes the way we perceive the domain and therefore how we model it. This thinking takes us **away from pages**. Instead, we find we have **actors** with the **abilities** to play a given role. Each test scenario becomes a narrative describing the tasks and how we expect a story to play out for a given goal.
 
 !SUB
 ## Page object code smell
@@ -114,34 +119,6 @@ Scenario: add ability to sort items on popularity
 
 !SLIDE
 <!-- .slide: data-background="#6B205E" -->
-# Refactor Page Objects
-**Pageobject** approach
-- Add method to "itemsPage" class
-
-!SUB
-## Satisfy OCP
-- Adding a new **behaviour** would involve adding a new class
-- Leaving elements and tasks in **single class**
-
-!SUB
-## Satisfying SRP
-- Create classes for locating **elements** and **tasks**
-- NOTE: this not solves OCP (each new task requires opening the tasks class)
-
-!SUB
-## Satisfy OCP and OCP
-- Combine the **Extract Class refactoring** with the **Replace Method with Method Object** refactoring
-
-!SLIDE
-<!-- .slide: data-background="#6B205E" -->
-# Page-objects are not user stories
-
-* **Behaviours** are the primary concern of our tests; the **implementation** — a secondary concern.
-
-* By starting from this point of view, this changes the way we perceive the domain and therefore how we model it. This thinking takes us **away from pages**. Instead, we find we have **actors** with the **abilities** to play a given role. Each test scenario becomes a narrative describing the tasks and how we expect a story to play out for a given goal.
-
-!SLIDE
-<!-- .slide: data-background="#6B205E" -->
 # Screenplay getting started
 
 - Start with user story
@@ -186,8 +163,16 @@ For this reason, tests read much better if they are presented from the point of 
 
 *screenplay domain modal*
 
-!SLIDE
+!SUB
 # Set up
 
 * git clone
 * build
+
+!SLIDE
+<!-- .slide: data-background="#6B205E" -->
+# Actors and Abilities
+
+!SUB
+
+# Title
