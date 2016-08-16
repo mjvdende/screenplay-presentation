@@ -17,10 +17,10 @@
 
 - Why screenplay
 - Screenplay getting started
-- Actors and Abilities
+- Actors & Abilities
 - Tasks & Actions
-- Actor & Questions
-- ALl together now
+- Questions
+- All together now
 
 !SLIDE
 <!-- .slide: data-background="#6B205E" -->
@@ -172,8 +172,47 @@ For this reason, tests read much better if they are presented from the point of 
 
 !SLIDE
 <!-- .slide: data-background="#6B205E" -->
-# Actors and Abilities
+# Actors & Abilities
 
 !SUB
+# As an Actor ...
 
-# Title
+!SUB
+# Ability to Browse the Web
+
+!SUB
+# Hands-on: Ability to Authorize
+
+!SLIDE
+<!-- .slide: data-background="#6B205E" -->
+# Tasks & Actions
+
+!SUB
+# Example
+
+!SUB
+# Hands-on: Open the website
+
+* Implement 'Task' interface
+* Use 'Open' action
+
+!SLIDE
+<!-- .slide: data-background="#6B205E" -->
+# Questions
+
+!SUB
+# Hands-on: Avatar Visible?
+
+!SLIDE
+<!-- .slide: data-background="#6B205E" -->
+# All together now...
+
+!SUB
+# Hands-on: Messaging feature
+
+!SLIDE
+<!-- .slide: data-background="#6B205E" -->
+# Wrap-up
+
+!SUB
+# Pro's & Con's
