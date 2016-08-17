@@ -8,7 +8,7 @@
 # Workshop Webdriver Patterns
 ## Page-objects to Screenplay
 
-**Maarten van den Ende** mvandenende@xebia.com <br>
+**Maarten van den Ende** mvandenende@xebia.com <br />
 **Jochum Börger** jborger@xebia.com
 
 !SLIDE
@@ -59,7 +59,7 @@ For example, a singleton design pattern signifies use of single object so all de
 
 > A code smell is a surface indication that usually corresponds to a deeper problem in the system. The term was first coined by Kent Beck while helping me with my Refactoring book.
 
-*- Martin Fowler*
+*- Martin Fowler* <!-- .element: class="author" -->
 
 * Large class
 

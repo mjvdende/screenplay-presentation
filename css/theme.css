@@ -189,22 +189,27 @@ Other
 .reveal blockquote:before {
   color: #ccc;
   content: open-quote;
-  font-size: 4em;
+  font-size: 3em;
   line-height: 0.1em;
-  margin-right: 0.25em;
   vertical-align: -0.4em;
 }
 .reveal blockquote:after {
   color: #ccc;
   content: close-quote;
-  font-size: 4em;
+  font-size: 3em;
   line-height: 0.1em;
   margin-right: 0.25em;
   vertical-align: -0.4em;
-  content: "\201D";
 }
 .reveal blockquote p {
   display: inline;
+}
+
+.reveal p em.author {
+  font-size: 0.7em;
+  margin-top: -1.25em;
+  display: block;
+  text-align: right;
 }
 .reveal q {}
 
