@@ -59,7 +59,7 @@ For example, a singleton design pattern signifies use of single object so all de
 
 > A code smell is a surface indication that usually corresponds to a deeper problem in the system. The term was first coined by Kent Beck while helping me with my Refactoring book.
 
-*- Martin Fowler* <!-- .element: class="author" -->
+  *- Martin Fowler* <!-- .element: class="author" -->
 
 * Large class
 
@@ -161,7 +161,7 @@ For this reason, tests read much better if they are presented from the point of 
 !SUB
 ## Screenplay actor centric model
 
-![Screenplay](/img/screenplay.jpg)
+![Screenplay](img/screenplay.jpg)
 
 *screenplay domain modal*
 
