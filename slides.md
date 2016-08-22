@@ -134,7 +134,7 @@ So that I can see my avatar
 
 !SUB
 ## Test scenario
-```
+```java
 @Test
 public void should_be_able_to_login_with_credentials() {
   givenThat(anna).wasAbleTo(openTheMeetUpWebsite);
@@ -168,21 +168,58 @@ For this reason, tests read much better if they are presented from the point of 
 !SUB
 # Set up
 
-* git clone
-* build
+* git clone https://github.com/xebia/screenplay-meetup.git
+* load the maven project into IntelliJ
+* fix the credentials.properties file (src/test/resources)
+* mvn verify -Dtags=PageObjects
 
 !SLIDE
 <!-- .slide: data-background="#6B205E" -->
 # Actors & Abilities
 
 !SUB
-# As an Actor ...
+# As a Test Master ...
+
+```java
+Actor tim = new Actor.named("Tim");
+```
+
+* Give the actor a name
+* .. a name that you can easily associate with the actor's role
+  * Sales person -> Sally
 
 !SUB
 # Ability to Browse the Web
 
+```java
+tim.can(BrowseTheWeb.with(hisBrowser));
+```
+
+* BrowseTheWeb ability is build into Serenity
+* Manages the WebDriver instance
+
 !SUB
-# Hands-on: Ability to Authorize
+# Define your own abilities
+
+```java
+public class MyAbility implements Ability {}
+```
+
+Examples:
+* Ability to use an API
+* Ability to Authenticate (with a specific Role?)
+* Ability to load a data file
+
+!SUB
+# Hands-on: Ability to Authenticate
+
+```java
+tim.can(Authenticate.withCredentials("username","password"));
+```
+
+* git checkout exercise1
+* complete the Authenticate implementation
+* mvn verify -Dtags=Screenplay
 
 !SLIDE
 <!-- .slide: data-background="#6B205E" -->
