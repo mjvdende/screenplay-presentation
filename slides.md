@@ -171,7 +171,7 @@ For this reason, tests read much better if they are presented from the point of 
 * git clone https://github.com/xebia/screenplay-meetup.git
 * load the maven project into IntelliJ
 * fix the credentials.properties file (src/test/resources)
-* mvn verify -Dtags=PageObjects
+* mvn clean verify -Dtags=PageObjects
 
 !SLIDE
 <!-- .slide: data-background="#6B205E" -->
@@ -219,7 +219,7 @@ tim.can(Authenticate.withCredentials("username","password"));
 
 * git checkout exercise1
 * complete the Authenticate implementation
-* mvn verify -Dtags=Screenplay
+* mvn clean verify -Dtags=Screenplay
 
 !SLIDE
 <!-- .slide: data-background="#6B205E" -->
@@ -235,7 +235,7 @@ When actor attempts to perform another task
 Then actor...
 ```
 
-* In the scenario's actors perform tasks
+* In scenario's actors perform tasks
 
 !SUB
 # Concrete example
@@ -296,14 +296,59 @@ Examples of build-in WebDriver actions:
 * git checkout exercise2
 * complete the classes in the "tasks" package
 * use the targets defined in the page objects in the "ui" package
-* mvn verify -Dtags=Screenplay
+* mvn clean verify -Dtags=Screenplay
 
 !SLIDE
 <!-- .slide: data-background="#6B205E" -->
 # Questions
 
 !SUB
+# Finish the scenario
+```
+Given actor was able to perform a task
+When actor attempts to perform another task
+Then actor should see that there is some new state
+```
+
+After the actor has performed the tasks
+the *actor* can ask *questions* about the *state* of the application
+
+!SUB
+# Is the actor logged in?
+
+How do we know the actor is logged in?
+
+Meetup.com example:
+* The header contains the users avatar
+
+```java
+givenThat(tim).wasAbleTo(openTheLoginPage);
+when(tim).attemptsTo(Login.withCredentials());
+then(tim).should(seeThat(theUserAvatarIsVisible));
+```
+
+!SUB
+# Question class layout
+
+```java
+public class MyQuestion implements Question<String> {
+    @Override
+    public String answeredBy(Actor actor) {
+        return "Some string answer";
+    }
+}
+```
+
+* Question implementations are of a certain type (String, Boolean, Integer etc.)
+* The answerBy method should return the same type
+* Serenity has build-in functionality to check elements via WebDriver
+
+!SUB
 # Hands-on: Avatar Visible?
+
+* git checkout exercise3
+* complete the class in the "questions" package
+* mvn clean verify -Dtags=Screenplay
 
 !SLIDE
 <!-- .slide: data-background="#6B205E" -->
@@ -312,9 +357,21 @@ Examples of build-in WebDriver actions:
 !SUB
 # Hands-on: Messaging feature
 
+* git checkout exercise4
+
+* classes to complete:
+  * tasks.BrowseToTheMessagesPage
+  * tasks.messaging.DraftANewMessage
+  * tasks.messaging.SendTheMessage
+  * questions.MostRecentConversationPartner
+
+* mvn clean verify -Dtags=Screenplay
+
 !SLIDE
 <!-- .slide: data-background="#6B205E" -->
 # Wrap-up
 
 !SUB
 # Pro's & Con's
+
+Will you be using this pattern?
