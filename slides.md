@@ -226,13 +226,77 @@ tim.can(Authenticate.withCredentials("username","password"));
 # Tasks & Actions
 
 !SUB
-# Example
+# Abstract example
+
+Abstract scenario:
+```
+Given actor was able to perform a task
+When actor attempts to perform another task
+Then actor...
+```
+
+* In the scenario's actors perform tasks
 
 !SUB
-# Hands-on: Open the website
+# Concrete example
 
-* Implement 'Task' interface
-* Use 'Open' action
+Log in scenario:
+```
+Given Tim was able to open the login page
+When Tim attempts to login with his credentials
+Then Tim ...
+```
+
+* Our actor "Tim" performs specific tasks:
+  * "Open the login page"
+  * "Login with his credentials"
+
+!SUB
+# Implemented example
+
+```java
+givenThat(tim).wasAbleTo(openTheLoginPage);
+when(tim).attemptsTo(Login.withCredentials());
+then(tim)...;
+```
+
+* Tasks are simple references to "Performable" classes
+* Implementation reads as a scenario
+
+!SUB
+# Task class layout
+
+```java
+public class MyTask implements Task {
+  @Override
+  public <T extends Actor> void performAs(T actor) {
+    // Here the actor performs the actions to complete the task
+  }
+}
+```
+
+* A task is implemented as the actor performing one or more performables
+  * other tasks
+  * or actions
+
+!SUB
+# Actions
+
+* Also "Performable" classes
+* Used to perform interactions with the application.
+
+Examples of build-in WebDriver actions:
+* Open -> to open a browser on a page
+* Enter -> to enter text into a field
+* Click -> to click on a button or link
+
+!SUB
+# Hands-on: Open the website & Log in
+
+* git checkout exercise2
+* complete the classes in the "tasks" package
+* use the targets defined in the page objects in the "ui" package
+* mvn verify -Dtags=Screenplay
 
 !SLIDE
 <!-- .slide: data-background="#6B205E" -->
