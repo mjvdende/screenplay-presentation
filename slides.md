@@ -134,7 +134,7 @@ So that I can see my avatar
 
 !SUB
 ## Test scenario
-```
+```java
 @Test
 public void should_be_able_to_login_with_credentials() {
   givenThat(anna).wasAbleTo(openTheMeetUpWebsite);
@@ -168,41 +168,187 @@ For this reason, tests read much better if they are presented from the point of 
 !SUB
 # Set up
 
-* git clone
-* build
+* git clone https://github.com/xebia/screenplay-meetup.git
+* load the maven project into IntelliJ
+* fix the credentials.properties file (src/test/resources)
+* mvn clean verify -Dtags=PageObjects
 
 !SLIDE
 <!-- .slide: data-background="#6B205E" -->
 # Actors & Abilities
 
 !SUB
-# As an Actor ...
+# As a Test Master ...
+
+```java
+Actor tim = new Actor.named("Tim");
+```
+
+* Give the actor a name
+* .. a name that you can easily associate with the actor's role
+  * Sales person -> Sally
 
 !SUB
 # Ability to Browse the Web
 
+```java
+tim.can(BrowseTheWeb.with(hisBrowser));
+```
+
+* BrowseTheWeb ability is build into Serenity
+* Manages the WebDriver instance
+
 !SUB
-# Hands-on: Ability to Authorize
+# Define your own abilities
+
+```java
+public class MyAbility implements Ability {}
+```
+
+Examples:
+* Ability to use an API
+* Ability to Authenticate (with a specific Role?)
+* Ability to load a data file
+
+!SUB
+# Hands-on: Ability to Authenticate
+
+```java
+tim.can(Authenticate.withCredentials("username","password"));
+```
+
+* git checkout exercise1
+* complete the Authenticate implementation
+* mvn clean verify -Dtags=Screenplay
 
 !SLIDE
 <!-- .slide: data-background="#6B205E" -->
 # Tasks & Actions
 
 !SUB
-# Example
+# Abstract example
+
+Abstract scenario:
+```
+Given actor was able to perform a task
+When actor attempts to perform another task
+Then actor...
+```
+
+* In scenario's actors perform tasks
 
 !SUB
-# Hands-on: Open the website
+# Concrete example
 
-* Implement 'Task' interface
-* Use 'Open' action
+Log in scenario:
+```
+Given Tim was able to open the login page
+When Tim attempts to login with his credentials
+Then Tim ...
+```
+
+* Our actor "Tim" performs specific tasks:
+  * "Open the login page"
+  * "Login with his credentials"
+
+!SUB
+# Implemented example
+
+```java
+givenThat(tim).wasAbleTo(openTheLoginPage);
+when(tim).attemptsTo(Login.withCredentials());
+then(tim)...;
+```
+
+* Tasks are simple references to "Performable" classes
+* Implementation reads as a scenario
+
+!SUB
+# Task class layout
+
+```java
+public class MyTask implements Task {
+  @Override
+  public <T extends Actor> void performAs(T actor) {
+    // Here the actor performs the actions to complete the task
+  }
+}
+```
+
+* A task is implemented as the actor performing one or more performables
+  * other tasks
+  * or actions
+
+!SUB
+# Actions
+
+* Also "Performable" classes
+* Used to perform interactions with the application.
+
+Examples of build-in WebDriver actions:
+* Open -> to open a browser on a page
+* Enter -> to enter text into a field
+* Click -> to click on a button or link
+
+!SUB
+# Hands-on: Open the website & Log in
+
+* git checkout exercise2
+* complete the classes in the "tasks" package
+* use the targets defined in the page objects in the "ui" package
+* mvn clean verify -Dtags=Screenplay
 
 !SLIDE
 <!-- .slide: data-background="#6B205E" -->
 # Questions
 
 !SUB
+# Finish the scenario
+```
+Given actor was able to perform a task
+When actor attempts to perform another task
+Then actor should see that there is some new state
+```
+
+After the actor has performed the tasks
+the *actor* can ask *questions* about the *state* of the application
+
+!SUB
+# Is the actor logged in?
+
+How do we know the actor is logged in?
+
+Meetup.com example:
+* The header contains the users avatar
+
+```java
+givenThat(tim).wasAbleTo(openTheLoginPage);
+when(tim).attemptsTo(Login.withCredentials());
+then(tim).should(seeThat(theUserAvatarIsVisible));
+```
+
+!SUB
+# Question class layout
+
+```java
+public class MyQuestion implements Question<String> {
+    @Override
+    public String answeredBy(Actor actor) {
+        return "Some string answer";
+    }
+}
+```
+
+* Question implementations are of a certain type (String, Boolean, Integer etc.)
+* The answerBy method should return the same type
+* Serenity has build-in functionality to check elements via WebDriver
+
+!SUB
 # Hands-on: Avatar Visible?
+
+* git checkout exercise3
+* complete the class in the "questions" package
+* mvn clean verify -Dtags=Screenplay
 
 !SLIDE
 <!-- .slide: data-background="#6B205E" -->
@@ -211,9 +357,21 @@ For this reason, tests read much better if they are presented from the point of 
 !SUB
 # Hands-on: Messaging feature
 
+* git checkout exercise4
+
+* classes to complete:
+  * tasks.BrowseToTheMessagesPage
+  * tasks.messaging.DraftANewMessage
+  * tasks.messaging.SendTheMessage
+  * questions.MostRecentConversationPartner
+
+* mvn clean verify -Dtags=Screenplay
+
 !SLIDE
 <!-- .slide: data-background="#6B205E" -->
 # Wrap-up
 
 !SUB
 # Pro's & Con's
+
+Will you be using this pattern?
