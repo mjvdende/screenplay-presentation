@@ -13,19 +13,10 @@
 
 !SLIDE
 <!-- .slide: data-background="#6B205E" -->
-# Structure
+# Why screenplay?
 
-- Why screenplay
-- Screenplay getting started
-- Actors & Abilities
-- Tasks & Actions
-- Questions
-- All together now
-- Wrap-up
-
-!SLIDE
-<!-- .slide: data-background="#6B205E" -->
-# Why screenplay
+!SUB
+# Why design patterns?
 
 Design patterns are solutions to general problems that software developers faced during software development.
 
@@ -132,9 +123,11 @@ Scenario: add ability to sort items on popularity
 
 !SLIDE
 <!-- .slide: data-background="#6B205E" -->
-# Screenplay getting started
+# Getting Started Screenplay 
 
-- Start with user story
+
+!SUB
+# Start with user story
 
 ```
 Should be able to login with credentials
@@ -180,11 +173,15 @@ For this reason, tests read much better if they are presented from the point of 
 !SUB
 # Set up
 
-* git clone https://github.com/xebia/screenplay-meetup.git
+* ```bash
+$ git clone https://github.com/xebia/screenplay-meetup.git
+```
 * load the maven project into IntelliJ
- * **File > New > Project from Existing Sources**
+ * *File > New > Project from Existing Sources*
 * fix the credentials.properties file (src/test/resources)
-* mvn clean verify -Dtags=PageObjects
+* ```bash
+$ mvn clean verify -Dtags=PageObjects
+```
 
 !SLIDE
 <!-- .slide: data-background="#6B205E" -->
