@@ -13,39 +13,31 @@
 
 !SLIDE
 <!-- .slide: data-background="#6B205E" -->
-# Structure
+# Why screenplay?
 
-- Why screenplay
-- Screenplay getting started
-- Actors & Abilities
-- Tasks & Actions
-- Questions
-- All together now
-- Wrap-up
+!SUB
+# Why design patterns?
 
-!SLIDE
-<!-- .slide: data-background="#6B205E" -->
-# Why screenplay
+Design patterns are solutions to general problems that software developers faced during software development.
 
-Design patterns are solutions to general problems that software developers faced during software development. <!-- .element: class="fragment" data-fragment-index="1" -->
-
-Design patterns provide a standard terminology and are specific to particular scenario. <!-- .element: class="fragment" data-fragment-index="2" -->
+Design patterns provide a standard terminology and are specific to particular scenario.
 
 
 !NOTE
 
-Design patterns represent the best practices used by experienced object-oriented software developers. Design patterns are solutions to general problems that software developers faced during software development. These solutions were obtained by trial and error by numerous software developers over quite a substantial period of time.
-
-For example, a singleton design pattern signifies use of single object so all developers familiar with single design pattern will make use of single object and they can tell each other that program is following a singleton pattern.
+Design patterns represent the best practices used by experienced object-oriented software developers.<br />
+For example, a PageObject design pattern signifies use of single object with ui specific code so all developers familiar with page object design pattern will make use of this page object and they can tell each other that program is following a Pageobject pattern.
 
 !SUB
 ## Page-objects
 
 * PageObjects are the standard for automated web testing for many years.
 * Simon Stewart wrote the original Selenium PageObject wiki entry in 2009
-* Page-objects are not user stories
 * Code smell and coding principles
 * Test suites become slow, fragile and unreliable
+
+!NOTE
+
 
 !SUB
 # Page-objects are not user stories
@@ -59,9 +51,11 @@ For example, a singleton design pattern signifies use of single object so all de
 
 > A code smell is a surface indication that usually corresponds to a deeper problem in the system. The term was first coined by Kent Beck while helping me with my Refactoring book.
 
-  *- Martin Fowler* <!-- .element: class="author" -->
+*- Martin Fowler* <!-- .element: class="author" -->
 
-* Large class
+!NOTE
+
+For example > Large class
 
 !SUB
 ## Coding principles
@@ -71,10 +65,19 @@ SOLID is an acronym coined by Michael Feathers and Bob Martin that encapsulates 
 * Single Responsibility Principle <!-- .element: class="fragment" data-fragment-index="1" -->
 * Open Closed Principle <!-- .element: class="fragment" data-fragment-index="2" -->
 * Liskov Substitution Principle <!-- .element: class="fragment" data-fragment-index="3" -->
-* Interface Segregation Principle <!-- .element: class="fragment" data-fragment-index="4" -->
-* Dependency Inversion Principle <!-- .element: class="fragment" data-fragment-index="5" -->
+* Interface Segregation Principle <!-- .element: class="fragment" data-fragment-index="3" -->
+* Dependency Inversion Principle <!-- .element: class="fragment" data-fragment-index="3" -->
 
-We’ll concentrate on the two that have the most noticeable effect on refactoring of PageObjects — the Single Responsibility Principle (SRP) and the Open Closed Principle (OCP). <!-- .element: class="fragment" data-fragment-index="6" -->
+We’ll concentrate on the two that have the most noticeable effect on refactoring of PageObjects — the Single Responsibility Principle (SRP) and the Open Closed Principle (OCP). <!-- .element: class="fragment" data-fragment-index="4" -->
+
+!NOTE
+S: a class should have only a single responsibility (i.e. only one potential change in the software's specification should be able to affect the specification of the class)
+O: “software entities … should be open for extension, but closed for modification.”
+L: “objects in a program should be replaceable with instances of their subtypes without altering the correctness of that program.”
+I: “many client-specific interfaces are better than one general-purpose interface.”
+D: one should “Depend upon Abstractions. Do not depend upon concretions.
+https://en.wikipedia.org/wiki/SOLID_%28object-oriented_design%29
+
 
 !SUB
 ## SRP - Single Responsibility Principle
@@ -120,9 +123,11 @@ Scenario: add ability to sort items on popularity
 
 !SLIDE
 <!-- .slide: data-background="#6B205E" -->
-# Screenplay getting started
+# Getting Started Screenplay 
 
-- Start with user story
+
+!SUB
+# Start with user story
 
 ```
 Should be able to login with credentials
@@ -168,10 +173,15 @@ For this reason, tests read much better if they are presented from the point of 
 !SUB
 # Set up
 
-* git clone https://github.com/xebia/screenplay-meetup.git
+* ```bash
+$ git clone https://github.com/xebia/screenplay-meetup.git
+```
 * load the maven project into IntelliJ
+ * *File > New > Project from Existing Sources*
 * fix the credentials.properties file (src/test/resources)
-* mvn clean verify -Dtags=PageObjects
+* ```bash
+$ mvn clean verify -Dtags=PageObjects
+```
 
 !SLIDE
 <!-- .slide: data-background="#6B205E" -->
