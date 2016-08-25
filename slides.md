@@ -235,14 +235,10 @@ $ mvn clean verify -Dtags=Screenplay
 ```
 
 !NOTE
-Hints:
-
-Two things are missing!
-
-The constructor is missing.
-
-The instance variables are missing.
-
+Hints:<br/>
+Two things are missing!<br/>
+The constructor is missing.<br/>
+The instance variables are missing.<br/>
 Create a new Authenticate object within within the withCredentials function.
 
 !SLIDE
@@ -290,12 +286,14 @@ then(tim)...;
 * Implementation reads as a scenario
 
 !NOTE
-Here some wrapper functions are introduced also:
-
-givenThat, when, then: These wrap actor objects
-
-wasAbleTo, attemptsTo: These wrap Performable objects (Tasks, Actions)
-
+Here some wrapper functions are introduced also:<br/>
+<br/>
+givenThat, when, then:<br/>
+These wrap actor objects<br/>
+<br/>
+wasAbleTo, attemptsTo:<br/>
+These wrap Performable objects (Tasks, Actions)<br/>
+<br/>
 See also: http://thucydides.info/docs/serenity-staging/#_actors_perform_tasks
 
 !SUB
@@ -338,14 +336,10 @@ $ mvn clean verify -Dtags=Screenplay
 ```
 
 !NOTE
-Hints:
-
-The Target for the BrowseToTheLoginPage Task is in the MeetUpLandingPage PageObject.
-
-The value for the password field can be retrieved using the authenticated method, like for the username.
-
-The Targets for the LogIn Task are in the LoginPage PageObject.
-
+Hints:<br/>
+The Target for the BrowseToTheLoginPage Task is in the MeetUpLandingPage PageObject.<br/>
+The value for the password field can be retrieved using the authenticated method, like for the username.<br/>
+The Targets for the LogIn Task are in the LoginPage PageObject.<br/>
 To LogOut you need to perform two actions. Click the HeaderNavigation dropdown, and then the logout link.
 
 !SLIDE
@@ -409,12 +403,9 @@ mvn clean verify -Dtags=Screenplay
 ```
 
 !NOTE
-Hints:
-
-Serenity has a class CurrentVisibility
-
-Which can view a target as an Actor
-
+Hints:<br/>
+Serenity has a class CurrentVisibility<br/>
+Which can view a target as an Actor<br/>
 And return a Boolean
 
 !SLIDE
@@ -437,16 +428,13 @@ mvn clean verify -Dtags=Screenplay
 ```
 
 !NOTE
-Hints:
-
-To Draft a new message:
-- *Click the new message button*
-- *Enter the recipient username*
-- *Click the found member*
-- *Enter the message text*
-
-For the question, you can user the Text class.
-
+Hints:<br/>
+To Draft a new message:<br/>
+*- Click the new message button*<br/>
+*- Enter the recipient username*<br/>
+*- Click the found member*<br/>
+*- Enter the message text*<br/>
+For the question, you can user the Text class.<br/>
 ```bash
 git checkout finished
 ```
