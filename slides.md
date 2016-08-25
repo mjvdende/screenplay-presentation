@@ -94,9 +94,7 @@ Open Closed Principle: To satisfy OCP it should be possible to simply add a new 
 * Describe the tasks that can be completed on a page using its elements(often, but not always, expressing navigation in the PageObject returned by a task). <!-- .element: class="fragment" data-fragment-index="2" -->
 
 !NOTE
-Page objects provide abstraction of elements on a page and describe task that can be performed. This violating the single responsibility principle. We will see an practical examples in the hands-on exercises later.
-
-New tests typically need modifications to existing Page Object classes, introducing the risk of bugs.
+Page objects provide abstraction of elements on a page and describe task that can be performed. This violating the single responsibility principle. We will see an practical examples in the hands-on exercises later. New tests typically need modifications to existing Page Object classes, introducing the risk of bugs.
 
 
 !SUB
