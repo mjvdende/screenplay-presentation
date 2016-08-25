@@ -64,11 +64,13 @@ SOLID is an acronym coined by Michael Feathers and Bob Martin that encapsulates 
 
 * Single Responsibility Principle <!-- .element: class="fragment" data-fragment-index="1" -->
 * Open Closed Principle <!-- .element: class="fragment" data-fragment-index="2" -->
-* Liskov Substitution Principle <!-- .element: class="fragment" data-fragment-index="3" -->
-* Interface Segregation Principle <!-- .element: class="fragment" data-fragment-index="3" -->
-* Dependency Inversion Principle <!-- .element: class="fragment" data-fragment-index="3" -->
 
-We’ll concentrate on the two that have the most noticeable effect on refactoring of PageObjects — the Single Responsibility Principle (SRP) and the Open Closed Principle (OCP). <!-- .element: class="fragment" data-fragment-index="4" -->
+We’ll concentrate on the two that have the most noticeable effect on refactoring of PageObjects — the Single Responsibility Principle (SRP) and the Open Closed Principle (OCP). <!-- .element: class="fragment" data-fragment-index="3" -->
+
+* Liskov Substitution Principle <!-- .element: class="fragment" data-fragment-index="4" -->
+* Interface Segregation Principle <!-- .element: class="fragment" data-fragment-index="4" -->
+* Dependency Inversion Principle <!-- .element: class="fragment" data-fragment-index="4" -->
+
 
 !NOTE
 S: a class should have only a single responsibility (i.e. only one potential change in the software's specification should be able to affect the specification of the class)
@@ -123,11 +125,11 @@ Scenario: add ability to sort items on popularity
 
 !SLIDE
 <!-- .slide: data-background="#6B205E" -->
-# Getting Started Screenplay 
+# Getting Started Screenplay
 
 
 !SUB
-# Start with user story
+# It Starts with user story
 
 ```
 Should be able to login with credentials
