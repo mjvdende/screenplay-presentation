@@ -137,13 +137,13 @@ public void should_be_able_to_login_with_credentials() {
 !SUB
 ## Screenplay domain
 
-* Tests describe how a user interacts to achieve a goal
-* A user interacting with the system an Actor
-* Actors are at the heart of the Screenplay pattern
-* Each actor has one or more Abilities
-* Actors can also perform Tasks
-* To achieve these tasks, they will typically need to interact with the application. We call these interactions Actions
-* Actors can also ask Questions about the state of the application
+* *Tests* describe how a user interacts to _achieve a goal_
+* A _user interacting_ with the system is an *Actor*
+* *Actors* are at the _heart of the Screenplay pattern_
+* Each *Actor* _has_ one or more *Abilities*
+* *Actors* can also _perform_ *Tasks*
+* To achieve these *Tasks*, they will typically need to _interact with the application_. We call these interactions *Actions*
+* *Actors* can also _ask_ *Questions* about the _state_ of the application
 
 !NOTE
 For this reason, tests read much better if they are presented from the point of view of the user (rather than from the point of ‘pages’).
@@ -175,6 +175,8 @@ $ mvn clean verify -Dtags=PageObjects
 !SUB
 # As a Test Master ...
 
+A _user interacting_ with the system is an *Actor*
+
 ```java
 Actor tim = new Actor.named("Tim");
 ```
@@ -183,8 +185,13 @@ Actor tim = new Actor.named("Tim");
 * .. a name that you can easily associate with the actor's role
   * Sales person -> Sally
 
+!NOTE
+Think of the actor as a physical human.
+
 !SUB
 # Ability to Browse the Web
+
+* Each *Actor* _has_ one or more *Abilities*
 
 ```java
 tim.can(BrowseTheWeb.with(hisBrowser));
@@ -192,6 +199,9 @@ tim.can(BrowseTheWeb.with(hisBrowser));
 
 * BrowseTheWeb ability is build into Serenity
 * Manages the WebDriver instance
+
+!NOTE
+Think of the actor now having an object to interact with, a computer with a browser.
 
 !SUB
 # Define your own abilities
@@ -205,6 +215,10 @@ Examples:
 * Ability to Authenticate (with a specific Role?)
 * Ability to load a data file
 
+!NOTE
+This gives you the possibility to manage source code needed to make available interfaces for interactions.
+Or define specific roles.
+
 !SUB
 # Hands-on: Ability to Authenticate
 
@@ -212,9 +226,20 @@ Examples:
 tim.can(Authenticate.withCredentials("username","password"));
 ```
 
-* git checkout exercise1
-* complete the Authenticate implementation
-* mvn clean verify -Dtags=Screenplay
+* ```bash
+$ git checkout exercise1
+```
+* complete the *Authenticate* implementation
+* ```bash
+$ mvn clean verify -Dtags=Screenplay
+```
+
+!NOTE
+Hints:
+1. Two things are missing!
+2. The constructor is missing.
+3. The instance variables are missing.
+4. Create a new Authenticate object within within the withCredentials function.
 
 !SLIDE
 <!-- .slide: data-background="#6B205E" -->
@@ -223,6 +248,8 @@ tim.can(Authenticate.withCredentials("username","password"));
 !SUB
 # Abstract example
 
+*Actors* can also _perform_ *Tasks*
+
 Abstract scenario:
 ```
 Given actor was able to perform a task
@@ -230,7 +257,7 @@ When actor attempts to perform another task
 Then actor...
 ```
 
-* In scenario's actors perform tasks
+* In scenarios actors perform tasks
 
 !SUB
 # Concrete example
@@ -258,6 +285,15 @@ then(tim)...;
 * Tasks are simple references to "Performable" classes
 * Implementation reads as a scenario
 
+!NOTE
+Here some wrapper functions are introduced also:
+* givenThat, when, then
+  * These wrap actor objects
+* wasAbleTo, attemptsT
+  * These wrap Performable objects (Tasks, Actions)
+
+See also: http://thucydides.info/docs/serenity-staging/#_actors_perform_tasks
+
 !SUB
 # Task class layout
 
@@ -270,7 +306,7 @@ public class MyTask implements Task {
 }
 ```
 
-* A task is implemented as the actor performing one or more performables
+* A task is implemented as the actor performing one or more _Performables_
   * other tasks
   * or actions
 
@@ -288,10 +324,21 @@ Examples of build-in WebDriver actions:
 !SUB
 # Hands-on: Open the website & Log in
 
-* git checkout exercise2
-* complete the classes in the "tasks" package
-* use the targets defined in the page objects in the "ui" package
-* mvn clean verify -Dtags=Screenplay
+* ```bash
+$ git checkout exercise2
+```
+* complete the classes in the *tasks* package
+* use the targets defined in the page objects in the *ui* package
+* ```bash
+$ mvn clean verify -Dtags=Screenplay
+```
+
+!NOTE
+Hints:
+1. The Target for the BrowseToTheLoginPage Task is in the MeetUpLandingPage PageObject.
+2. The value for the password field can be retrieved using the authenticated method, like for the username.
+3. The Targets for the LogIn Task are in the LoginPage PageObject.
+4. To LogOut you need to perform two actions. Click the HeaderNavigation dropdown, and then the logout link.
 
 !SLIDE
 <!-- .slide: data-background="#6B205E" -->
@@ -299,6 +346,7 @@ Examples of build-in WebDriver actions:
 
 !SUB
 # Finish the scenario
+
 ```
 Given actor was able to perform a task
 When actor attempts to perform another task
@@ -322,6 +370,9 @@ when(tim).attemptsTo(Login.withCredentials());
 then(tim).should(seeThat(theUserAvatarIsVisible));
 ```
 
+!NOTE
+The should(seeThat(...)) wrapper functions use a Hamcrest assertion to validate the state.
+
 !SUB
 # Question class layout
 
@@ -341,9 +392,19 @@ public class MyQuestion implements Question<String> {
 !SUB
 # Hands-on: Avatar Visible?
 
-* git checkout exercise3
-* complete the class in the "questions" package
-* mvn clean verify -Dtags=Screenplay
+* ```bash
+git checkout exercise3
+```
+* complete the class in the *questions* package
+* ```bash
+mvn clean verify -Dtags=Screenplay
+```
+
+!NOTE
+Hints:
+1. Serenity has a class CurrentVisibility
+2. Which can view a target as an Actor
+3. And return a Boolean
 
 !SLIDE
 <!-- .slide: data-background="#6B205E" -->
@@ -352,15 +413,29 @@ public class MyQuestion implements Question<String> {
 !SUB
 # Hands-on: Messaging feature
 
-* git checkout exercise4
-
+* ```bash
+git checkout exercise4
+```
 * classes to complete:
   * tasks.BrowseToTheMessagesPage
   * tasks.messaging.DraftANewMessage
   * tasks.messaging.SendTheMessage
   * questions.MostRecentConversationPartner
+* ```bash
+mvn clean verify -Dtags=Screenplay
+```
 
-* mvn clean verify -Dtags=Screenplay
+!NOTE
+Hints:
+1. To Draft a new message:
+  * Click the new message button
+  * Enter the recipient username
+  * Click the found member
+  * Enter the message text
+2. For the question, you can user the Text class.
+3. ```bash
+git checkout finished
+```
 
 !SLIDE
 <!-- .slide: data-background="#6B205E" -->
