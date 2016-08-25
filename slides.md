@@ -440,18 +440,12 @@ mvn clean verify -Dtags=Screenplay
 Hints:
 
 To Draft a new message:
-
-  *Click the new message button*
-
-  *Enter the recipient username*
-
-  *Click the found member*
-
-  *Enter the message text*
-
+- *Click the new message button*
+- *Enter the recipient username*
+- *Click the found member*
+- *Enter the message text*
 
 For the question, you can user the Text class.
-
 
 ```bash
 git checkout finished
