@@ -236,9 +236,13 @@ $ mvn clean verify -Dtags=Screenplay
 
 !NOTE
 Hints:
+
 Two things are missing!
+
 The constructor is missing.
+
 The instance variables are missing.
+
 Create a new Authenticate object within within the withCredentials function.
 
 !SLIDE
@@ -287,10 +291,10 @@ then(tim)...;
 
 !NOTE
 Here some wrapper functions are introduced also:
-* givenThat, when, then
-  * These wrap actor objects
-* wasAbleTo, attemptsT
-  * These wrap Performable objects (Tasks, Actions)
+
+givenThat, when, then: These wrap actor objects
+
+wasAbleTo, attemptsTo: These wrap Performable objects (Tasks, Actions)
 
 See also: http://thucydides.info/docs/serenity-staging/#_actors_perform_tasks
 
@@ -335,9 +339,13 @@ $ mvn clean verify -Dtags=Screenplay
 
 !NOTE
 Hints:
+
 The Target for the BrowseToTheLoginPage Task is in the MeetUpLandingPage PageObject.
+
 The value for the password field can be retrieved using the authenticated method, like for the username.
+
 The Targets for the LogIn Task are in the LoginPage PageObject.
+
 To LogOut you need to perform two actions. Click the HeaderNavigation dropdown, and then the logout link.
 
 !SLIDE
@@ -402,8 +410,11 @@ mvn clean verify -Dtags=Screenplay
 
 !NOTE
 Hints:
+
 Serenity has a class CurrentVisibility
+
 Which can view a target as an Actor
+
 And return a Boolean
 
 !SLIDE
@@ -427,12 +438,21 @@ mvn clean verify -Dtags=Screenplay
 
 !NOTE
 Hints:
+
 To Draft a new message:
-  * Click the new message button
-  * Enter the recipient username
-  * Click the found member
-  * Enter the message text
+
+  *Click the new message button*
+
+  *Enter the recipient username*
+
+  *Click the found member*
+
+  *Enter the message text*
+
+
 For the question, you can user the Text class.
+
+
 ```bash
 git checkout finished
 ```
