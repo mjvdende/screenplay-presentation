@@ -137,13 +137,13 @@ public void should_be_able_to_login_with_credentials() {
 !SUB
 ## Screenplay domain
 
-* *Tests* describe how a user interacts to _achieve a goal_
-* A _user interacting_ with the system is an *Actor*
-* *Actors* are at the _heart of the Screenplay pattern_
-* Each *Actor* _has_ one or more *Abilities*
-* *Actors* can also _perform_ *Tasks*
-* To achieve these *Tasks*, they will typically need to _interact with the application_. We call these interactions *Actions*
-* *Actors* can also _ask_ *Questions* about the _state_ of the application
+* **Tests** describe how a user interacts to _achieve a goal_
+* A _user interacting_ with the system is an **Actor**
+* **Actors** are at the _heart of the Screenplay pattern_
+* Each **Actor** _has_ one or more **Abilities**
+* **Actors** can also _perform_ **Tasks**
+* To achieve these **Tasks**, they will typically need to _interact with the application_. We call these interactions **Actions**
+* **Actors** can also _ask_ **Questions** about the _state_ of the application
 
 !NOTE
 For this reason, tests read much better if they are presented from the point of view of the user (rather than from the point of ‘pages’).
@@ -175,7 +175,7 @@ $ mvn clean verify -Dtags=PageObjects
 !SUB
 # As a Test Master ...
 
-A _user interacting_ with the system is an *Actor*
+A _user interacting_ with the system is an **Actor**
 
 ```java
 Actor tim = new Actor.named("Tim");
@@ -191,7 +191,7 @@ Think of the actor as a physical human.
 !SUB
 # Ability to Browse the Web
 
-* Each *Actor* _has_ one or more *Abilities*
+Each **Actor** _has_ one or more **Abilities**
 
 ```java
 tim.can(BrowseTheWeb.with(hisBrowser));
@@ -229,17 +229,17 @@ tim.can(Authenticate.withCredentials("username","password"));
 * ```bash
 $ git checkout exercise1
 ```
-* complete the *Authenticate* implementation
+* complete the **Authenticate** implementation
 * ```bash
 $ mvn clean verify -Dtags=Screenplay
 ```
 
 !NOTE
 Hints:
-1. Two things are missing!
-2. The constructor is missing.
-3. The instance variables are missing.
-4. Create a new Authenticate object within within the withCredentials function.
+Two things are missing!
+The constructor is missing.
+The instance variables are missing.
+Create a new Authenticate object within within the withCredentials function.
 
 !SLIDE
 <!-- .slide: data-background="#6B205E" -->
@@ -248,7 +248,7 @@ Hints:
 !SUB
 # Abstract example
 
-*Actors* can also _perform_ *Tasks*
+**Actors** can also _perform_ **Tasks**
 
 Abstract scenario:
 ```
@@ -335,10 +335,10 @@ $ mvn clean verify -Dtags=Screenplay
 
 !NOTE
 Hints:
-1. The Target for the BrowseToTheLoginPage Task is in the MeetUpLandingPage PageObject.
-2. The value for the password field can be retrieved using the authenticated method, like for the username.
-3. The Targets for the LogIn Task are in the LoginPage PageObject.
-4. To LogOut you need to perform two actions. Click the HeaderNavigation dropdown, and then the logout link.
+The Target for the BrowseToTheLoginPage Task is in the MeetUpLandingPage PageObject.
+The value for the password field can be retrieved using the authenticated method, like for the username.
+The Targets for the LogIn Task are in the LoginPage PageObject.
+To LogOut you need to perform two actions. Click the HeaderNavigation dropdown, and then the logout link.
 
 !SLIDE
 <!-- .slide: data-background="#6B205E" -->
@@ -354,7 +354,7 @@ Then actor should see that there is some new state
 ```
 
 After the actor has performed the tasks
-the *actor* can ask *questions* about the *state* of the application
+the **actor** can ask **questions** about the **state** of the application
 
 !SUB
 # Is the actor logged in?
@@ -402,9 +402,9 @@ mvn clean verify -Dtags=Screenplay
 
 !NOTE
 Hints:
-1. Serenity has a class CurrentVisibility
-2. Which can view a target as an Actor
-3. And return a Boolean
+Serenity has a class CurrentVisibility
+Which can view a target as an Actor
+And return a Boolean
 
 !SLIDE
 <!-- .slide: data-background="#6B205E" -->
@@ -427,13 +427,13 @@ mvn clean verify -Dtags=Screenplay
 
 !NOTE
 Hints:
-1. To Draft a new message:
+To Draft a new message:
   * Click the new message button
   * Enter the recipient username
   * Click the found member
   * Enter the message text
-2. For the question, you can user the Text class.
-3. ```bash
+For the question, you can user the Text class.
+```bash
 git checkout finished
 ```
 
