@@ -33,18 +33,12 @@ For example, a PageObject design pattern signifies use of single object with ui 
 
 * PageObjects are the standard for automated web testing for many years.
 * Simon Stewart wrote the original Selenium PageObject wiki entry in 2009
-* Code smell and coding principles
 * Test suites become slow, fragile and unreliable
+* Code smell and coding principles
 
 !NOTE
+Little history about PageObject pattern. It's a industry standard. There are some known problems with it. Although some suggests this is due to bad test design. Another concern is the pageobject pattern does not adhere to all coding principles and does contain some code smell.
 
-
-!SUB
-# Page-objects are not user stories
-
-* **Behaviours** are the primary concern of our tests; the **implementation** — a secondary concern.
-
-* By starting from this point of view, this changes the way we perceive the domain and therefore how we model it. This thinking takes us **away from pages**. Instead, we find we have **actors** with the **abilities** to play a given role. Each test scenario becomes a narrative describing the tasks and how we expect a story to play out for a given goal.
 
 !SUB
 ## Page object code smell
@@ -56,6 +50,8 @@ For example, a PageObject design pattern signifies use of single object with ui 
 !NOTE
 
 For example > Large class
+- takes longer to understand
+- a solution would to split up in
 
 !SUB
 ## Coding principles
@@ -63,12 +59,14 @@ For example > Large class
 SOLID is an acronym coined by Michael Feathers and Bob Martin that encapsulates five good object-oriented programming principles
 
 * Single Responsibility Principle <!-- .element: class="fragment" data-fragment-index="1" -->
-* Open Closed Principle <!-- .element: class="fragment" data-fragment-index="2" -->
+* Open Closed Principle <!-- .element: class="fragment" data-fragment-index="1" -->
+
+We’ll concentrate on the two that have the most noticeable effect on refactoring of PageObjects — the Single Responsibility Principle (SRP) and the Open Closed Principle (OCP). <!-- .element: class="fragment" data-fragment-index="2" -->
+
 * Liskov Substitution Principle <!-- .element: class="fragment" data-fragment-index="3" -->
 * Interface Segregation Principle <!-- .element: class="fragment" data-fragment-index="3" -->
 * Dependency Inversion Principle <!-- .element: class="fragment" data-fragment-index="3" -->
 
-We’ll concentrate on the two that have the most noticeable effect on refactoring of PageObjects — the Single Responsibility Principle (SRP) and the Open Closed Principle (OCP). <!-- .element: class="fragment" data-fragment-index="4" -->
 
 !NOTE
 S: a class should have only a single responsibility (i.e. only one potential change in the software's specification should be able to affect the specification of the class)
@@ -80,54 +78,43 @@ https://en.wikipedia.org/wiki/SOLID_%28object-oriented_design%29
 
 
 !SUB
-## SRP - Single Responsibility Principle
-The SRP states that a class should have only one responsibility and therefore only one reason to change. This reduces the risk of us affecting other unrelated behaviours when we make a necessary change.
+## SRP & OCP
+Single Responsibility Principle: The SRP states that a class should have only **one** responsibility and therefore only one reason to change.
+* Easier to test, read and maintain
+* Separation of Concerns
 
-> If a class has more than one responsibility, then the responsibilities become coupled. Changes to one responsibility may impair or inhibit the class’ ability to meet the others. This kind of coupling leads to fragile designs that break in unexpected ways when changed.
-
-*- Robert Martin, Agile Principles, Patterns & Practices*
-
-!SUB
-## SRP: PageObjects commonly have the following responsibilities:
-
-Provide an abstraction to the location of elements on a page via a meaningful label for what those elements mean in business terms. <!-- .element: class="fragment" data-fragment-index="1" -->
-
-Describe the tasks that can be completed on a page using its elements(often, but not always, expressing navigation in the PageObject returned by a task). <!-- .element: class="fragment" data-fragment-index="2" -->
+Open Closed Principle: To satisfy OCP it should be possible to simply add a new class that describes how to sort the list.
+* Prevents from bugs creeping in
 
 !SUB
-## SRP: Simple example
+## Page objects commonly have the following responsibilities
 
-Create example
+* Provide an abstraction to the location of elements on a page via a meaningful label for what those elements mean in business terms. <!-- .element: class="fragment" data-fragment-index="1" -->
+
+* Describe the tasks that can be completed on a page using its elements(often, but not always, expressing navigation in the PageObject returned by a task). <!-- .element: class="fragment" data-fragment-index="2" -->
 
 !NOTE
+Page objects provide abstraction of elements on a page and describe task that can be performed. This violating the single responsibility principle. We will see an practical examples in the hands-on exercises later.
 
-show structure of simple page, login or meetup page?
-* Elements: toggleAllButtons, filterTodos, newTodo
-* Tasks: addATodoItem, filterItems, ToggleAllCompleted
+New tests typically need modifications to existing Page Object classes, introducing the risk of bugs.
 
-!SUB
-## OCP - Open Closed Principle
-
-The Open Closed Principle (coined by Bertrand Meyer in Object-Oriented Software Construction) states that a class should be open for extension, but closed for modification.
-
-> Adding a new feature would involve leaving the old code in place and only deploying the new code, perhaps in a new jar or dll or gem. 
-
-*— Robert Martin, The Open Closed Principle*
 
 !SUB
-## OCP: Simple example
+# Page-objects are not user stories
 
-To satisfy OCP it should be possible to simply add a new class that describes how to sort the list.
+**Behaviours** are the primary concern of our tests, the **implementation** a secondary concern.
 
-Scenario: add ability to sort items on popularity
+!NOTE
+By starting from this point of view, this changes the way we perceive the domain and therefore how we model it. This thinking takes us **away from pages**. Instead, we find we have **actors** with the **abilities** to play a given role. Each test scenario becomes a narrative describing the tasks and how we expect a story to play out for a given goal.
+
 
 !SLIDE
 <!-- .slide: data-background="#6B205E" -->
-# Getting Started Screenplay 
+# Getting Started Screenplay
 
 
 !SUB
-# Start with user story
+# It Starts with user story
 
 ```
 Should be able to login with credentials
