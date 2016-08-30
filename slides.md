@@ -63,10 +63,6 @@ SOLID is an acronym coined by Michael Feathers and Bob Martin that encapsulates 
 
 We’ll concentrate on the two that have the most noticeable effect on refactoring of PageObjects — the Single Responsibility Principle (SRP) and the Open Closed Principle (OCP). <!-- .element: class="fragment" data-fragment-index="2" -->
 
-* Liskov Substitution Principle <!-- .element: class="fragment" data-fragment-index="3" -->
-* Interface Segregation Principle <!-- .element: class="fragment" data-fragment-index="3" -->
-* Dependency Inversion Principle <!-- .element: class="fragment" data-fragment-index="3" -->
-
 
 !NOTE
 S: a class should have only a single responsibility (i.e. only one potential change in the software's specification should be able to affect the specification of the class)
