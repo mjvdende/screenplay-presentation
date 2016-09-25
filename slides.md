@@ -158,11 +158,37 @@ For this reason, tests read much better if they are presented from the point of 
 $ git clone https://github.com/xebia/screenplay-meetup.git
 ```
 * load the maven project into IntelliJ
- * *File > New > Project from Existing Sources*
+  * *File > New > Project from Existing Sources*
 * fix the credentials.properties file (src/test/resources)
+  * Create a meetup.com account if you don't have one (don't login with google or facebook!)
+  * Join the Test Masters Series group (https://www.meetup.com/Test-Masters-Series/)
+  * Add your credentials to credentials.properties.example
+  * Rename the file to credentials.properties
 * ```bash
 $ mvn clean verify -Dtags=PageObjects
 ```
+
+!SLIDE
+<!-- .slide: data-background="#6B205E" -->
+# Testing the Meetup.com website
+
+!SUB
+#Features
+
+* Login to the website
+* Message another member in a meetup group
+
+!SUB
+#Page Object implementation
+
+Let's take a look together.
+
+!SUB
+# Refactor to the screenplay pattern
+
+* Actors & Abilities
+* Tasks & Actions
+* Questions
 
 !SLIDE
 <!-- .slide: data-background="#6B205E" -->
