@@ -153,29 +153,31 @@ For this reason, tests read much better if they are presented from the point of 
 !SUB
 # Set up
 
-* ```bash
-$ git clone https://github.com/xebia/screenplay-meetup.git
-```
 * load the maven project into IntelliJ
   * *File > New > Project from Existing Sources*
-* fix the credentials.properties file (src/test/resources)
-  * Create a meetup.com account if you don't have one (don't login with google or facebook!)
-  * Join the Test Masters Series group (https://www.meetup.com/Test-Masters-Series/)
-  * Add your credentials to credentials.properties.example
-  * Rename the file to credentials.properties
+  * ~/academy-day/screenplay-meetup/
 * ```bash
-$ mvn clean verify -Dtags=PageObjects
-```
+  $ git pull
+  $ git checkout twc-start
+  ```
+* start the system under test
+  * ```bash
+  $ ./startapp.sh
+  ```
+* run the acceptance tests
+  * ```bash
+  $ mvn clean verify -Dtags=PageObjects
+  ```
 
 !SLIDE
 <!-- .slide: data-background="#6B205E" -->
-# Testing the Meetup.com website
+# Testing the Angular webshop
 
 !SUB
 #Features
 
-* Login to the website
-* Message another member in a meetup group
+* Add a product to the shopping cart
+* Change the amount of a product in the shopping cart
 
 !SUB
 #Page Object implementation
@@ -241,23 +243,29 @@ This gives you the possibility to manage source code needed to make available in
 Or define specific roles.
 
 !SUB
-# Hands-on: Ability to Authenticate
+# Example: Ability to Authenticate (1/2)
 
 ```java
 tim.can(Authenticate.withCredentials("username","password"));
+
+//...
+
+tim.attemptsTo(Login.withCredentials());
 ```
 
-* ```bash
-$ git checkout exercise1
-```
-* complete the **Authenticate** implementation
-* ```bash
-$ mvn clean verify -Dtags=Screenplay
+
+!SUB
+# Example: Ability to Authenticate (2/2)
+
+```java
+tim.can(Authenticate.withHisFacebookAccount());
+tim.attemptsTo(Login.withFacebook());
 ```
 
-!NOTE
-Hints:<br/>
-Create a new Authenticate object within within the withCredentials function.
+```java
+tim.attemptsTo(Login.withCredentials());
+// Cannot Authenticate Exception!
+```
 
 !SLIDE
 <!-- .slide: data-background="#6B205E" -->
@@ -282,21 +290,21 @@ Then actor...
 
 Log in scenario:
 ```
-Given Tim was able to open the login page
-When Tim attempts to login with his credentials
+Given Tim was able to open the webshop
+When Tim attempts to add a product to the cart
 Then Tim ...
 ```
 
 * Our actor "Tim" performs specific tasks:
   * "Open the login page"
-  * "Login with his credentials"
+  * "Add a product to the cart"
 
 !SUB
 # Implemented example
 
 ```java
-givenThat(tim).wasAbleTo(openTheLoginPage);
-when(tim).attemptsTo(Login.withCredentials());
+givenThat(tim).wasAbleTo(openTheWebshop);
+when(tim).attemptsTo(AddsToTheCart.theProducts("Product"));
 then(tim)...;
 ```
 
@@ -345,7 +353,7 @@ Examples of build-in WebDriver actions:
 # Hands-on: Open the website & Log in
 
 * ```bash
-$ git checkout exercise2
+$ git checkout twc-exercise-1
 ```
 * complete the classes in the *tasks* package
 * use the targets defined in the page objects in the *ui* package
@@ -355,10 +363,10 @@ $ mvn clean verify -Dtags=Screenplay
 
 !NOTE
 Hints:<br/>
-The Target for the BrowseToTheLoginPage Task is in the MeetUpLandingPage PageObject.<br/>
-The value for the password field can be retrieved using the authenticated method, like for the username.<br/>
-The Targets for the LogIn Task are in the LoginPage PageObject.<br/>
-To LogOut you need to perform two actions. Click the HeaderNavigation dropdown, and then the logout link.
+OpenTheWebshop task needs the overloaded variant op the Open.browserOn() method<br />
+The browserOn method can be given a page object implementation<br />
+AddToHerCart task can be implemented with the Click action on Add to cart target<br />
+To select the right product use dot notation and method of() to set the product
 
 !SLIDE
 <!-- .slide: data-background="#6B205E" -->
@@ -377,17 +385,15 @@ After the actor has performed the tasks
 the **actor** can ask **questions** about the **state** of the application
 
 !SUB
-# Is the actor logged in?
+# Is the product in the cart?
 
-How do we know the actor is logged in?
-
-Meetup.com example:
-* The header contains the users avatar
+How do we know the product is in the cart?
+We check the number of products in the cart.
 
 ```java
-givenThat(tim).wasAbleTo(openTheLoginPage);
-when(tim).attemptsTo(Login.withCredentials());
-then(tim).should(seeThat(theUserAvatarIsVisible));
+givenThat(tim).wasAbleTo(openTheWebshop);
+when(tim).attemptsTo(AddsToTheCart.theProducts("Product"));
+then(tim).should(seeThat(theNumberOfProducts, is(1)));
 ```
 
 !NOTE
@@ -410,51 +416,51 @@ public class MyQuestion implements Question<String> {
 * Serenity has build-in functionality to check elements via WebDriver
 
 !SUB
-# Hands-on: Avatar Visible?
+# Hands-on: Number of products?
 
 * ```bash
-git checkout exercise3
+git checkout twc-exercise-2
 ```
-* complete the class in the *questions* package
+* complete the targets in the *ui* package
+* complete the classes in the *questions* package
 * ```bash
 mvn clean verify -Dtags=Screenplay
 ```
 
 !NOTE
 Hints:<br/>
-Serenity has a class CurrentVisibility<br/>
-Which can view a target as an Actor<br/>
-And return a Boolean
+For the targets, use the "data-e2e-id" attributes<br/>
+Serenity has the action Text, which gives the Text of a given Target<br/>
+The Text can be return asInteger or asString or etc...
 
 !SLIDE
 <!-- .slide: data-background="#6B205E" -->
 # All together now...
 
 !SUB
-# Hands-on: Messaging feature
+# Hands-on: Amount of products in the cart feature
 
 * ```bash
-git checkout exercise4
+git checkout twc-exercise-3
 ```
 * classes to complete:
-  * tasks.BrowseToTheMessagesPage
-  * tasks.messaging.DraftANewMessage
-  * tasks.messaging.SendTheMessage
-  * questions.MostRecentConversationPartner
+  * tasks.Start
+  * tasks.AddsToTheCart
+  * tasks.ViewTheCart
+  * tasks.DecreaseAmountOfProduct
+  * tasks.IncreaseAmountOfProduct
 * ```bash
 mvn clean verify -Dtags=Screenplay
 ```
 
 !NOTE
 Hints:<br/>
-To Draft a new message:<br/>
-*- Click the new message button*<br/>
-*- Enter the recipient username*<br/>
-*- Click the found member*<br/>
-*- Enter the message text*<br/>
-For the question, you can user the Text class.<br/>
+Start: execute the AddsToTheCart tasks with the collection<br/>
+AddsToTheCart: change the type of the instance variable to Collection and loop over it in the perform method.<br/>
+ViewTheCart: Click the cart icon<br/>
+In-/De-creaseAmountOfProduct: Click the increase of decrease button of the product<br/>
 ```bash
-git checkout finished
+git checkout twc-solution
 ```
 
 !SLIDE
