@@ -153,11 +153,10 @@ For this reason, tests read much better if they are presented from the point of 
 !SUB
 # Set up
 
-* ```bash
-$ git clone https://github.com/xebia/screenplay-meetup.git
-```
 * load the maven project into IntelliJ
   * *File > New > Project from Existing Sources*
+  * ~/academy-day/screenplay-meetup/
+* checkout the *master* branch
 * fix the credentials.properties file (src/test/resources)
   * Create a meetup.com account if you don't have one (don't login with google or facebook!)
   * Join the Test Masters Series group (https://www.meetup.com/Test-Masters-Series/)
