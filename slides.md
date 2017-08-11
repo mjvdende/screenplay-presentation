@@ -22,7 +22,6 @@ Design patterns are solutions to general problems that software developers faced
 
 Design patterns provide a standard terminology and are specific to particular scenario.
 
-
 !NOTE
 
 Design patterns represent the best practices used by experienced object-oriented software developers.<br />
