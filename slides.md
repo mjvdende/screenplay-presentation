@@ -3,6 +3,7 @@
 <center><div style="width: 65%; height: auto;"><img src="img/xebia.svg"/></div></center>
 <br />
 <center>
+
 <br />
 <br />
 # Workshop Webdriver Patterns
